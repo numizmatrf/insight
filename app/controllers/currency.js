@@ -49,8 +49,9 @@ exports.index = function(req, res) {
       if (!err) {
         if (JSON.parse(data).result === false)
           exmoRate = exmoRate;
-        else
+        else if(JSON.parse(data).ADS_USD)
           exmoRate = parseFloat(JSON.parse(data).ADS_USD.avg);
+          else exmoRate = 0.0;
       }
     });
   }
