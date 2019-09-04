@@ -49,8 +49,9 @@ exports.index = function(req, res) {
       if (!err) {
         if (JSON.parse(data).result === false)
           exmoRate = exmoRate;
-        else
+        else if(JSON.parse(data).ADS_USD)
           exmoRate = parseFloat(JSON.parse(data).ADS_USD.avg);
+          else exmoRate = 0.0;
       }
     });
   }
@@ -60,6 +61,7 @@ exports.index = function(req, res) {
 
     _request('http://www.coincap.io/front', function(err, data) {
       if (!err) coincapFront = JSON.parse(data);
+      if(coincapFront)
       for (var i=0; i< coincapFront.length; i++) {
         if ( coincapFront[i].short == 'ADS' ) coincapRate = parseFloat(coincapFront[i].price);
       }
