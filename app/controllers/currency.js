@@ -60,6 +60,7 @@ exports.index = function(req, res) {
 
     _request('http://www.coincap.io/front', function(err, data) {
       if (!err) coincapFront = JSON.parse(data);
+      if(coincapFront)
       for (var i=0; i< coincapFront.length; i++) {
         if ( coincapFront[i].short == 'ADS' ) coincapRate = parseFloat(coincapFront[i].price);
       }
